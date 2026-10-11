@@ -1,0 +1,35 @@
+# Compilação e relatórios gerados
+target/
+*.class
+
+# Configurações locais de IDE
+.idea/
+*.iml
+*.ipr
+*.iws
+.vscode/
+.classpath
+.project
+.settings/
+.metadata/
+
+# Arquivos temporários e logs
+*.log
+*.tmp
+*.temp
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# Configurações privadas e credenciais locais
+.env
+.env.*
+!.env.example
+settings.xml
+*.pem
+*.key
+*.p12
+*.pfx
+*.jks
