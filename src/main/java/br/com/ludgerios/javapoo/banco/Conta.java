@@ -3,7 +3,6 @@ package br.com.ludgerios.javapoo.banco;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
-/** Conta educacional com saldo não negativo e valores exatos em centavos. */
 public final class Conta {
     private final int numeroConta;
     private final String titular;

@@ -31,7 +31,6 @@ public final class MenuEstoque {
                         console.escreverLinha("Retornando ao menu principal.");
                         return;
                     }
-                    default -> throw new IllegalStateException("Opção não validada pelo leitor.");
                 }
             } catch (IllegalArgumentException erro) {
                 console.escreverLinha("Erro: " + erro.getMessage());

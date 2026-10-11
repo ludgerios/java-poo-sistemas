@@ -1,6 +1,5 @@
 package br.com.ludgerios.javapoo.estoque;
 
-/** Produto com identidade fixa e quantidade controlada por venda e reposição. */
 public final class Produto {
     private final int codigoProduto;
     private final String nomeProduto;

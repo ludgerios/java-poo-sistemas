@@ -6,7 +6,6 @@ import java.util.Objects;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
-/** Lê linhas completas e mantém o ciclo de vida dos recursos com quem os forneceu. */
 public final class LeitorConsole {
     private static final Pattern DINHEIRO = Pattern.compile("[+-]?[0-9]+(?:[.,][0-9]{1,2})?");
 
@@ -86,9 +85,6 @@ public final class LeitorConsole {
     private String lerLinha(String mensagem) {
         saida.print(mensagem);
         saida.flush();
-        if (!entrada.hasNextLine()) {
-            throw new FimDaEntradaException();
-        }
         return entrada.nextLine().strip();
     }
 }

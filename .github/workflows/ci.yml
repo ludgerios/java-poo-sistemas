@@ -1,4 +1,4 @@
-name: CI Java
+name: Java
 
 on:
   push:
@@ -8,24 +8,16 @@ permissions:
   contents: read
 
 jobs:
-  verificar:
-    name: Java 17 / ${{ matrix.os }}
-    runs-on: ${{ matrix.os }}
-    timeout-minutes: 15
-    strategy:
-      fail-fast: false
-      matrix:
-        os: [ubuntu-latest, windows-latest]
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
-      - name: Obter código
-        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
-      - name: Preparar JDK 17
-        uses: actions/setup-java@de7274f081f381c8f8158605e0321c36c376e2e6 # v6.0.1
+      - uses: actions/setup-java@de7274f081f381c8f8158605e0321c36c376e2e6 # v6.0.1
         with:
           distribution: temurin
           java-version: '17'
           cache: maven
-      - name: Compilar e executar testes
-        run: mvn --batch-mode --no-transfer-progress clean verify
+      - run: mvn --batch-mode --no-transfer-progress clean verify

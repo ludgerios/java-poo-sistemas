@@ -1,12 +1,13 @@
 package br.com.ludgerios.javapoo.app;
 
-import br.com.ludgerios.javapoo.console.FimDaEntradaException;
 import br.com.ludgerios.javapoo.console.LeitorConsole;
+import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.io.Reader;
 import java.io.Writer;
 import java.nio.charset.StandardCharsets;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public final class Aplicacao {
@@ -14,19 +15,15 @@ public final class Aplicacao {
     private final MenuBancario menuBancario;
     private final MenuEstoque menuEstoque;
 
-    public Aplicacao(Scanner entrada, PrintWriter saida) {
-        console = new LeitorConsole(entrada, saida);
+    public Aplicacao(Reader entrada, Writer saida) {
+        console = new LeitorConsole(new Scanner(entrada), new PrintWriter(saida, true));
         menuBancario = new MenuBancario(console);
         menuEstoque = new MenuEstoque(console);
     }
 
-    public Aplicacao(Reader entrada, Writer saida) {
-        this(new Scanner(entrada), new PrintWriter(saida, true));
-    }
-
     public static void main(String[] argumentos) {
-        Scanner entrada = new Scanner(System.in, StandardCharsets.UTF_8);
-        PrintWriter saida = new PrintWriter(new OutputStreamWriter(System.out, StandardCharsets.UTF_8), true);
+        Reader entrada = new InputStreamReader(System.in, StandardCharsets.UTF_8);
+        Writer saida = new OutputStreamWriter(System.out, StandardCharsets.UTF_8);
         new Aplicacao(entrada, saida).executar();
     }
 
@@ -45,10 +42,9 @@ public final class Aplicacao {
                         console.escreverLinha("Aplicação encerrada.");
                         return;
                     }
-                    default -> throw new IllegalStateException("Opção não validada pelo leitor.");
                 }
             }
-        } catch (FimDaEntradaException fimDaEntrada) {
+        } catch (NoSuchElementException fimDaEntrada) {
             console.escreverLinha("\nEntrada encerrada. Aplicação finalizada.");
         }
     }

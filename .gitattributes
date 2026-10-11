@@ -7,6 +7,3 @@
 *.md text eol=lf
 *.yml text eol=lf
 *.properties text eol=lf
-mvnw text eol=lf
-mvnw.cmd text eol=crlf
-docs/originais/** -text -whitespace
